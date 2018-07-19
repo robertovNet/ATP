@@ -79,22 +79,23 @@ namespace ATP.Engine
                     tipoTendenciaActual = TipoTendencia.Alza;
 
                 if (!ultimoTipoTendencia.HasValue)
-                {
                     tendencia = new Tendencia { Tipo = tipoTendenciaActual };
-                    //candlesTendencia.Add(candle);
-                }
                 else if (ultimoTipoTendencia.Value != tipoTendenciaActual)
                 {
-                    tendencia.Candles = candlesTendencia;
+                    tendencia.Candles = candlesTendencia.OrderBy(ct => ct.DateTime);
                     tendencias.Add(tendencia);
                     tendencia = new Tendencia { Tipo = tipoTendenciaActual };
                     candlesTendencia = new List<ChartDataCandle>();
                 }
-                //else
+
                 candlesTendencia.Add(candle);
 
                 ultimoTipoTendencia = tipoTendenciaActual;
             }
+
+            tendencia.Candles = candlesTendencia;
+            tendencias.Add(tendencia);
+            var tendenciasResult = tendencias.OrderBy(t => t.Start);
         }
     }
 }

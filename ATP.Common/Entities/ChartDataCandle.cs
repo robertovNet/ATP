@@ -1,4 +1,5 @@
 ﻿using ATP.Common.Enums;
+using ATP.Common.Extensions;
 using System;
 
 namespace ATP.Common.Entities
@@ -23,32 +24,38 @@ namespace ATP.Common.Entities
 
         public DateTime DateTime => DateTimeOffset.FromUnixTimeSeconds(Date).DateTime;
 
-        public double PercentChange => (Close - Open) / Open;
+        public double PercentChange => ((Close - Open) / Open);
 
         public TipoVariacion TipoVariacion
         {
             get
             {
-                if (PercentChange > 12.0d)
+                if (PercentChange > 0.12d)
                     return TipoVariacion.AlzaFuerte;
 
-                if (PercentChange > 7.0d)
+                if (PercentChange > 0.07d)
                     return TipoVariacion.AlzaModerada;
 
-                if (PercentChange > 3.0d)
+                if (PercentChange > 0.03d)
                     return TipoVariacion.AlzaEstabilizacion;
 
-                if (PercentChange < -12.0d)
+                if (PercentChange < -0.12d)
                     return TipoVariacion.BajaFuerte;
 
-                if (PercentChange < -7.0d)
+                if (PercentChange < -0.07d)
                     return TipoVariacion.BajaModerada;
 
-                if (PercentChange < -3.0d)
+                if (PercentChange < -0.03d)
                     return TipoVariacion.BajaEstabilizacion;
 
                 return TipoVariacion.Despreciable;
             }
+        }
+
+        public override string ToString()
+        {
+            var description = $@"Date: {DateTime:dd/MM/yyyy HH:mm} Open: {Open:N8} High: {High:N8} Low: {Low:N8} Close: {Close:N8} V: {Volume:N2} QV: {QuoteVolume:N2} WAvg: {WeightedAverage:N8} Change: {PercentChange:P3} Var: {TipoVariacion.GetEnumDescription()}";
+            return description;
         }
     }
 }
