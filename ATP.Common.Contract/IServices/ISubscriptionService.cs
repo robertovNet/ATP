@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ATP.Common.Contract.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ATP.Common.Contract.IServices
 {
     public interface ISubscriptionService
     {
+        Task<IEnumerable<Subscriber>> GetSubscribersAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

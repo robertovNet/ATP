@@ -45,10 +45,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ATP.Common.Contract\ATP.Common.Contract.csproj">
+      <Project>{6eb45a72-f89e-46a2-923f-b1f66c1c3614}</Project>
+      <Name>ATP.Common.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ATP.Common.Logic\ATP.Common.Logic.csproj">
+      <Project>{0796f874-d873-4e54-8d10-e76f6f2cf824}</Project>
+      <Name>ATP.Common.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ATP.Common\ATP.Common.csproj">
       <Project>{94a4fecb-9382-44ab-8818-bfc3a2600d00}</Project>
       <Name>ATP.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

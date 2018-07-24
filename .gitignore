@@ -217,7 +217,8 @@ FakesAssemblies/
 *.ide-shm
 *.ide-wal
 *.sqlite
-ATPSettingsSecrets.config
+ATPSettings.config
+Connections.config
 
 # =========================
 # Operating System Files

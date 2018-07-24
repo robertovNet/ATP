@@ -61,6 +61,15 @@ namespace ATP.Common {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se encontró el string de conexión [{0}] en el archivo de configuración..
+        /// </summary>
+        public static string ConnectionStringsNotFound {
+            get {
+                return ResourceManager.GetString("ConnectionStringsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No se pudo completar la llamada al Servicio..
         /// </summary>
         public static string ServiceInternalError {

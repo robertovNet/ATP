@@ -9,24 +9,32 @@ using System.Net.Http;
 using System.Timers;
 using System.Linq;
 using System.Configuration;
+using ATP.Common.Contract.IServices;
+using ATP.Common.Logic.Services;
 
 namespace ATP.Engine
 {
     public class MarketWatcher
     {
-        private readonly string publicExUrl;
-        private readonly double interval;
+        private string publicExUrl;
+        private double interval;
         private Timer timer;
+        private ISubscriptionService subscriptionService;
 
         public MarketWatcher()
+        {
+            Init();
+            RequestChartData();
+            //OnTimeElapsed(null, null);
+        }
+
+        private void Init()
         {
             publicExUrl = ConfigurationManager.AppSettings["publicExURL"];
             interval = 10000d;
             timer = new Timer(interval);
+            subscriptionService = new SubscriptionService();
             //SetTimer();
-
-            RequestChartData();
-            //OnTimeElapsed(null, null);
         }
 
         private void SetTimer()
@@ -39,7 +47,12 @@ namespace ATP.Engine
         private async void OnTimeElapsed(object source, ElapsedEventArgs e)
         {
             var now = DateTime.Now;
-            var recipients = new[] { "someone's email@email.com" };
+            var subscribers = await subscriptionService.GetSubscribersAsync().ConfigureAwait(false);
+
+            if (!subscribers.HasElements())
+                return;
+
+            var recipients = subscribers.Select(s => s.Email);
             var subject = "Trader Test";
             var bodyTemplate = "<h1>Hola</h1><br/>Mensaje enviado el {0} a las {1}";
             var templateParams = new[] { now.ToShortDateString(), now.ToShortTimeString() };

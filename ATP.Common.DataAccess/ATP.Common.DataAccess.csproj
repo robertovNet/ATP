@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,13 @@
       <Project>{6eb45a72-f89e-46a2-923f-b1f66c1c3614}</Project>
       <Name>ATP.Common.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ATP.Common\ATP.Common.csproj">
+      <Project>{94a4fecb-9382-44ab-8818-bfc3a2600d00}</Project>
+      <Name>ATP.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

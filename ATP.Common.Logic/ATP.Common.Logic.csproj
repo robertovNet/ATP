@@ -41,9 +41,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\SubscriptionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\ATP.Common.Contract\ATP.Common.Contract.csproj">
+      <Project>{6eb45a72-f89e-46a2-923f-b1f66c1c3614}</Project>
+      <Name>ATP.Common.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ATP.Common.DataAccess\ATP.Common.DataAccess.csproj">
+      <Project>{214df414-a6d3-4d83-a71d-5541b82bee39}</Project>
+      <Name>ATP.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ATP.Common\ATP.Common.csproj">
+      <Project>{94a4fecb-9382-44ab-8818-bfc3a2600d00}</Project>
+      <Name>ATP.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
